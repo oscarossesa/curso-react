@@ -1,0 +1,19 @@
+.locationCount {
+    width: 100%;
+    height: 35px;
+    text-align: left;
+    color: #888;
+    line-height: 35px;
+
+}
+
+.locationCount h1 {
+    margin: 0
+}
+
+.weatherLocationCount {
+    width: 408px;
+    padding: 25x;
+    font-family: 'Oswald', sans-serif;
+    box-shadow: 10px 10px 40px -12px rgba(0, 0, 0, 0.75); 
+}
