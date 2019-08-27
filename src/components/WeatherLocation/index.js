@@ -1,25 +1,9 @@
 import React, { Component } from 'react';
 import Location from './Location';
 import WeatherData from './WeatherData';
+import transformWeather from '../../services/transformWeather';
+import { api_weather } from '../../constants/api_url';
 import './styles.css';
-import {
-    SUN,
-    WINDY,
-} from './../../constants/weathers';
-
-const data = {
-    temperature: 1,
-    weatherState: SUN,
-    humidity: 10,
-    wind: '10 m/s',
-}
-
-const data2 = {
-    temperature: 14,
-    weatherState: WINDY,
-    humidity: 10,
-    wind: '10 m/s',
-}
 
 class WeatherLocation extends Component {
 
@@ -27,26 +11,53 @@ class WeatherLocation extends Component {
         super();
         this.state = {
             city: 'Santiago',
-            data: data,
+            data: null,
         };
+
+        console.log("constructor");
+        
+    }
+
+    componentDidMount(){
+        console.log("componentDidMount");
+        this.handleUpdateClick();
+    }
+
+    componentDidUpdate(){
+        console.log("componentDidUpdate");
     }
 
     handleUpdateClick = () => {
         console.log("actualizado");
+        console.log(api_weather);
 
-        this.setState({
-            city: 'Iquique',
-            data: data2,
-        })
+        fetch(api_weather).then(resolve => {
+
+            return resolve.json();
+        }).then(data => {
+
+            const newWeather = transformWeather(data);
+
+            console.log(newWeather);
+
+            this.setState({
+                data: newWeather,
+            });
+
+        });
+
     }
 
     render() {
+        console.log("render");
         const { city, data } = this.state;
         return (
             <div className="weatherLocationCont">
                 <Location city={ city }></Location>
-                <WeatherData data={ data }></WeatherData>
-                <button onClick={ this.handleUpdateClick }>Actualizar</button>
+                {data ? 
+                    <WeatherData data={ data }></WeatherData> :
+                    "Cargando..."
+                }
             </div>
         );
     }
