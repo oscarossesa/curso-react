@@ -5,7 +5,6 @@ import getUrlWeatherByCity from './../../services/getUrlWeatherByCity';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import transformWeather from '../../services/transformWeather';
-import { api_weather } from '../../constants/api_url';
 import './styles.css';
 
 class WeatherLocation extends Component {
@@ -28,21 +27,16 @@ class WeatherLocation extends Component {
         this.handleUpdateClick();
     }
 
-    componentDidUpdate(){
-        console.log("componentDidUpdate");
-    }
-
-    componentDidMount() {
-        this.handleUpdateClick();
-    }
-
     handleUpdateClick = () => {
         console.log("actualizado");
+        
+        const api_weather = getUrlWeatherByCity(this.state.city);
         console.log(api_weather);
 
         fetch(api_weather).then(resolve => {
 
             return resolve.json();
+
         }).then(data => {
 
             const newWeather = transformWeather(data);
