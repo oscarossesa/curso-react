@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LocationList from './components/LocationList';
+import ForecastExtended from './components/ForecastExtended';
 import './App.css';
 
 const cities = [
@@ -23,7 +24,12 @@ class App extends Component {
     return (
       <div className="App">
         <LocationList cities={cities}
-          onSelectedLocation={this.handleSelectionLocation}></LocationList>
+          onSelectedLocation={this.handleSelectionLocation}>
+        </LocationList>
+        <div className="detail">
+          <ForecastExtended></ForecastExtended>
+        </div>
+
       </div>
     );
   }
