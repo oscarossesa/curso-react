@@ -15,19 +15,26 @@ const cities = [
 
 class App extends Component {
 
+  constructor() {
+    super();
+
+    this.state = { city: "nueva ciudad2"};
+  }
   handleSelectionLocation = city => {
+
     console.log(`handleSelectionLocation ${city}`);
 
   }
 
   render() {
+    const { city } = this.state; 
     return (
       <div className="App">
         <LocationList cities={cities}
           onSelectedLocation={this.handleSelectionLocation}>
         </LocationList>
         <div className="detail">
-          <ForecastExtended></ForecastExtended>
+          <ForecastExtended city={city}></ForecastExtended>
         </div>
 
       </div>
