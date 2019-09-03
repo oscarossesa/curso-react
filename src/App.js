@@ -6,7 +6,7 @@ import './App.css';
 const cities = [
   'Santiago,cl',
   'Buenos Aires,ar',
-  'Washington,us',
+  // 'Washington,us',
   // 'Bogota,col',
   // 'Ciudad de México,mx',
   // 'Madrid,es',
