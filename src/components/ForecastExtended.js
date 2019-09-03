@@ -19,7 +19,7 @@ const data2 = {
 
 
 export const api_key = 'cc6aae116a67355c8d5c5772051cb35d';
-export const url_base_weather = 'http://api.openweathermap.org/data/2.5/forecast';
+export const url = 'http://api.openweathermap.org/data/2.5/forecast';
 
 class ForecastExtended extends Component {
 
@@ -30,7 +30,15 @@ class ForecastExtended extends Component {
    }
 
    componentDidMount() {
+      const url_forecast = `${url}?q=${this.props.city}&appid=${api_key}`;
       
+      fetch(url_forecast).then(
+         data => (data.json())
+      ).then(
+         weather_data => {
+            console.log(weather_data);
+         }
+      );
    }
 
    renderForcastItemDays() {
