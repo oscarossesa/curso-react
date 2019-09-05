@@ -20,6 +20,7 @@ class App extends Component {
 
     this.state = { city: null };
   }
+  
   handleSelectionLocation = city => {
 
     this.setState({ city });

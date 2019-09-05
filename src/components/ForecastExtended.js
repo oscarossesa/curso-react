@@ -31,6 +31,22 @@ class ForecastExtended extends Component {
    }
 
    componentDidMount() {
+      this.updateCity(this.props.city);
+   }
+   
+   /*
+    UNSAFE_componentWillReceiveProps()
+    Referencia: https://es.reactjs.org/docs/react-component.html
+    */
+
+   componentWillReceiveProps(nextProps) {
+      if(nextProps.city !== this.props.city) {
+         this.setState({ forcastData: null });
+         this.updateCity(nextProps.city);
+      }
+   }
+
+   updateCity = city => {      
       const url_forecast = `${url}?q=${this.props.city}&appid=${api_key}`;
       
       fetch(url_forecast).then(
