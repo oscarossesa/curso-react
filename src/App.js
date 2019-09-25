@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import LocationList from './components/LocationList';
+import LocationListContainer from './containers/LocationListContainer';
 import ForecastExtended from './components/ForecastExtended';
-import { setCity } from './actions';
 
 import './App.css';
 
@@ -16,7 +14,6 @@ const cities = [
   // 'Lima,pe',
 ]
 
-
 class App extends Component {
   
   constructor() {
@@ -24,43 +21,12 @@ class App extends Component {
     this.state = { city: null };
   }
   
-  handleSelectionLocation = city => {
-    
-    this.setState({ city });
-    console.log(`handleSelectionLocation ${city}`);
-    
-    this.props.setCity(city);
-  }
-  
   render() {
     const { city } = this.state;
     return (
       <div className="App">
-        <LocationList cities={cities}
-          onSelectedLocation={this.handleSelectionLocation}>
-        </LocationList>
+        <LocationListContainer cities={cities}></LocationListContainer>
         <div className="detail">
-          {/* {
-            city === null ?
-            <h1>No se seleccionó ciudad</h1> :
-            <ForecastExtended city={city}></ForecastExtended>
-          } */}
-
-          {/* Mejorado... */}
-          {/* {
-            !city ?
-            <h1>No se seleccionó ciudad</h1> :
-            <ForecastExtended city={city}></ForecastExtended>
-          } */}
-
-          {/* Otra opción con null... */}
-          {/* {
-            !city ?
-            null :
-            <ForecastExtended city={city}></ForecastExtended>
-          } */}
-
-          {/* Otra opción más abreviada... */}
           {
             city &&
             <ForecastExtended city={city}></ForecastExtended>
@@ -72,10 +38,4 @@ class App extends Component {
   }
 }
 
-const mapDispatchToPropsActions = dispatch => ({ 
-  setCity: value => dispatch(setCity(value))
-});
-
-const AppConnected = connect(null, mapDispatchToPropsActions)(App);
-
-export default AppConnected;
+export default App;
