@@ -12,6 +12,7 @@ class LocationListContainer extends Component {
 
    render() {
       return (
+         this.props.cities &&
          <LocationList cities={this.props.cities}
             onSelectedLocation={this.handleSelectionLocation}>
          </LocationList>

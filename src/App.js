@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LocationListContainer from './containers/LocationListContainer';
-import ForecastExtended from './components/ForecastExtended';
+import ForecastExtendedContainer from './containers/ForecastExtendedContainer';
 
 import './App.css';
 
@@ -14,23 +14,13 @@ const cities = [
   // 'Lima,pe',
 ]
 
-class App extends Component {
-  
-  constructor() {
-    super();
-    this.state = { city: null };
-  }
-  
+class App extends Component {  
   render() {
-    const { city } = this.state;
     return (
       <div className="App">
         <LocationListContainer cities={cities}></LocationListContainer>
         <div className="detail">
-          {
-            city &&
-            <ForecastExtended city={city}></ForecastExtended>
-          }
+            <ForecastExtendedContainer></ForecastExtendedContainer>
         </div>
 
       </div>
