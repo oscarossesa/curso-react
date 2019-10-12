@@ -1,12 +1,11 @@
 
 import { SET_CITY } from './../actions';
 
-export const city = (state, action) => {
+export const city = (state = {}, action) => {
    switch (action.type) {
       case SET_CITY:
-         return { ...state, city: action.value }   
+         return action.payload; 
       default:
-         break;
+         return state;
    }
-   return state;
 };
