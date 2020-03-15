@@ -5,24 +5,22 @@ import ForecastExtendedContainer from './containers/ForecastExtendedContainer';
 import './App.css';
 
 const cities = [
-  'Santiago,cl',
   'Buenos Aires,ar',
-  // 'Washington,us',
-  // 'Bogota,col',
-  // 'Ciudad de México,mx',
-  // 'Madrid,es',
-  // 'Lima,pe',
-]
+  'Washington,us',
+];
 
 class App extends Component {  
   render() {
+
+    // console.log('cities', cities); ok
+    
     return (
       <div className="App">
-        <LocationListContainer cities={cities}></LocationListContainer>
+        Bienvenido a Weather App - Aprendiendo React
+        <LocationListContainer cities={cities}></LocationListContainer>        
         <div className="detail">
             <ForecastExtendedContainer></ForecastExtendedContainer>
         </div>
-
       </div>
     );
   }

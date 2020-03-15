@@ -1,34 +1,53 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setSelectedCity } from './../actions';
+import { getWeatherCities, getCity } from './../reducers';
 import LocationList from './../components/LocationList';
+import { bindActionCreators } from 'redux';
+import * as actions from './../actions';
 
 class LocationListContainer extends Component {
 
-   handleSelectionLocation = city => {
-      this.props.setCity(city);
-   }
+    componentDidMount() {
 
-   render() {
-      return (
-         this.props.cities &&
-         <LocationList cities={this.props.cities}
-            onSelectedLocation={this.handleSelectionLocation}>
-         </LocationList>
-      );
-   }
+        const { 
+            setWeather, 
+            setSelectedCity, 
+            cities, 
+            city 
+        } = this.props;
+
+        setWeather(cities);
+
+        setSelectedCity(city);
+    }
+    
+    handleSelectedLocation = city => {
+        this.props.setSelectedCity(city);
+    }
+        
+    render() {
+        return (
+            <LocationList cities={this.props.citiesWeather} 
+              onSelectedLocation={this.handleSelectedLocation} 
+            ></LocationList>
+        );
+    }
 }
 
 LocationListContainer.propTypes = {
-   setCity: PropTypes.func.isRequired,
-   cities: PropTypes.array.isRequired,
+    setSelectedCity: PropTypes.func.isRequired,
+    setWeather: PropTypes.func.isRequired,
+    cities: PropTypes.array.isRequired,
+    citiesWeather: PropTypes.array,
+    city: PropTypes.string.isRequired,
 };
 
-const mapDispatchToProps = dispatch => (
-   {
-      setCity: value => dispatch(setSelectedCity(value))
-   }
-);
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
-export default connect(null, mapDispatchToProps)(LocationListContainer);
+const mapStateToProps = state => ({
+    citiesWeather: getWeatherCities(state),
+    city: getCity(state)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationListContainer);
