@@ -14,12 +14,12 @@ const renderForecastItemDays = (forecastData) => {
 }
 
 const renderProgress = () => {
-    return <h3>Cargando Pronóstico extendido...</h3>;
+    return <h3>Cargando Pronï¿½stico extendido...</h3>;
 }
 
 const ForecastExtended = ({ city, forecastData }) => (
     <div>
-        <h2 className='forecast-title'>Pronóstico Extendido para {city}</h2>
+        <h2 className='forecast-title'>Pronï¿½stico Extendido para {city}</h2>
         {forecastData ? 
             renderForecastItemDays(forecastData) :
             renderProgress()}
